@@ -26,6 +26,10 @@ import { Link } from 'react-router-dom';
               <Link className="nav-link" to='/matchEachYear'>Match each Year</Link>
               
             </li>
+            <li className="nav-item">
+              <Link className="nav-link" to='/GetmatchesWithPayments'>Matches With Payments</Link>
+              
+            </li>
           </ul>
         </div>
       </div>

@@ -3,6 +3,7 @@ import axios from "axios";
 const url = 'http://localhost:5260/api/Sponsor/payment-summary'
 const addPaymentUrl = 'http://localhost:5260/api/Payment';
 const matchByYearURL = 'http://localhost:5260/api/SponsorMatchCount/match-count?year=2024';
+const matchesWithPaymentsURL = 'http://localhost:5260/api/Matches/matches-with-payments';
 
 async function getSponsors() {
   let data = null;
@@ -11,7 +12,7 @@ async function getSponsors() {
     let response = await axios.get(url);
     if (response.status == 200) {
       data = await response.data;
-      console.log(data);
+      
     }
   } catch (error) {
     return JSON.stringify(error);
@@ -23,10 +24,10 @@ async function getMatchesByYear(year) {
   let data = null;
 
   try {
-    let response = await axios.get(`${matchByYearURL}`);
+    let response = await axios.get(matchByYearURL);
     if (response.status == 200) {
       data = await response.data;
-      console.log(data);
+      
     }
   } catch (error) {
     return JSON.stringify(error);
@@ -41,7 +42,7 @@ async function addPayment(payment) {
     let response = await axios.post(addPaymentUrl, payment);
     if (response.status == 200) {
       data = await response.data;
-      console.log(data);
+      
     }
   } catch (error) {
     return JSON.stringify(error);
@@ -49,4 +50,21 @@ async function addPayment(payment) {
   return data;
 }
 
-export {getSponsors,addPayment,getMatchesByYear}
+async function getmatchesWithPayments(){
+
+  let data = null;
+
+  try {
+    let response = await axios.get(matchesWithPaymentsURL);
+    if (response.status == 200) {
+      data = await response.data;
+      console.log(data);
+      
+    }
+  } catch (error) {
+    return JSON.stringify(error);
+  }
+  return data;
+}
+
+export {getSponsors,addPayment,getMatchesByYear,getmatchesWithPayments}
